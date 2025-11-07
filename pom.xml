@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.svalero</groupId>
-	<artifactId>finances</artifactId>
+	<artifactId>FinanTrack</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>finances</name>
 	<description>Demo project for Spring Boot</description>
