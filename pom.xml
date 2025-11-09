@@ -86,8 +86,18 @@
 		</dependency>
 	</dependencies>
 
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<!-- clase principal -->
+					<mainClass>com.svalero.finances.controller.MainController</mainClass>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
