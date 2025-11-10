@@ -19,7 +19,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main-view.fxml"));
         loader.setControllerFactory(springContext::getBean); // Integración con Spring
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);

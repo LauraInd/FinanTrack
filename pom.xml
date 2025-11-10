@@ -95,7 +95,7 @@
 				<version>0.0.8</version>
 				<configuration>
 					<!-- clase principal -->
-					<mainClass>com.svalero.finances.controller.MainController</mainClass>
+					<mainClass>com.svalero.finances.MainApp</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>

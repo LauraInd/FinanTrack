@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.MainController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.MainController">
+
 
     <!-- HEADER -->
     <top>
@@ -16,7 +17,10 @@
 
     <!-- CENTER TABLE -->
     <center>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <TableView fx:id="transactionTable" prefHeight="300">
                 <columns>
                     <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
@@ -31,7 +35,10 @@
 
     <!-- FOOTER -->
     <bottom>
-        <HBox alignment="CENTER" spacing="10" padding="10">
+        <HBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Button fx:id="btnAdd" text="Add" onAction="#onAddTransaction"/>
             <Button fx:id="btnEdit" text="Edit" onAction="#onEditTransaction"/>
             <Button fx:id="btnDelete" text="Delete" onAction="#onDeleteTransaction"/>

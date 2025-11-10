@@ -6,12 +6,15 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Component
 public class MainController {
-
+    @FXML
+    private Label label;
     @FXML private TableView<Transaction> transactionTable;
     @FXML private TableColumn<Transaction, String> colType;
     @FXML private TableColumn<Transaction, String> colCategory;
