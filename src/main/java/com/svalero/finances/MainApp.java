@@ -6,10 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import static com.svalero.finances.MainApp.springContext;
 
 public class MainApp extends Application {
 
-    private ConfigurableApplicationContext springContext;
+    public static ConfigurableApplicationContext springContext;
 
     @Override
     public void init() {

@@ -1,12 +1,14 @@
 package com.svalero.finances.repository;
 
 import com.svalero.finances.domain.Transaction;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class TransactionRepository {
     public void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS transactions (" +

@@ -5,11 +5,17 @@ import com.svalero.finances.service.TransactionService;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
+
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static com.svalero.finances.MainApp.springContext;
 
 @Component
 public class MainController {
@@ -43,8 +49,8 @@ public class MainController {
         lblBalance.setText(String.format("%.2f €", service.calculateBalance()));
     }
 
-    @FXML
-    public void onAddTransaction() {
+
+   /* public void onAddTransaction() {
         // Temporary example for testing database connection
         Transaction t = new Transaction();
         t.setType("Income");
@@ -56,7 +62,7 @@ public class MainController {
         service.addTransaction(t);
         loadTransactions();
         showAlert("Transaction added successfully.");
-    }
+    }*/
 
     @FXML
     public void onEditTransaction() {
@@ -84,6 +90,30 @@ public class MainController {
         loadTransactions();
         showAlert("Transaction deleted successfully.");
     }
+
+    @FXML
+    public void onAddTransaction() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/add-transaction.fxml")
+            );
+            loader.setControllerFactory(springContext::getBean);
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = new Stage();
+            stage.setTitle("Add Transaction");
+            stage.setScene(scene);
+            stage.showAndWait();
+
+            // recargar tabla después de añadir
+            loadTransactions();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
