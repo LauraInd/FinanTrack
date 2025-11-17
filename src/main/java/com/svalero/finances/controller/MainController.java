@@ -65,17 +65,49 @@ public class MainController {
     }*/
 
     @FXML
+    public void onAddTransaction() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add-transaction.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = new Stage();
+            stage.setTitle("Add Transaction");
+            stage.setScene(scene);
+            stage.showAndWait();
+
+            loadTransactions(); // refrescar
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     public void onEditTransaction() {
         Transaction selected = transactionTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert("Please select a transaction to edit.");
             return;
         }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/edit-transaction.fxml"));
 
-        selected.setDescription(selected.getDescription() + " (edited)");
-        service.updateTransaction(selected);
-        loadTransactions();
-        showAlert("Transaction updated successfully.");
+            Scene scene = new Scene(loader.load());
+            EditTransactionController controller = loader.getController();
+            controller.setTransaction(selected);
+
+            Stage stage = new Stage();
+            stage.setTitle("Edit Transaction");
+            stage.setScene(scene);
+            stage.showAndWait();
+
+            loadTransactions(); // recargar tabla después de editar
+            showAlert("Transaction updated successfully.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -91,28 +123,6 @@ public class MainController {
         showAlert("Transaction deleted successfully.");
     }
 
-    @FXML
-    public void onAddTransaction() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/view/add-transaction.fxml")
-            );
-            loader.setControllerFactory(springContext::getBean);
-
-            Scene scene = new Scene(loader.load());
-
-            Stage stage = new Stage();
-            stage.setTitle("Add Transaction");
-            stage.setScene(scene);
-            stage.showAndWait();
-
-            // recargar tabla después de añadir
-            loadTransactions();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void showAlert(String message) {

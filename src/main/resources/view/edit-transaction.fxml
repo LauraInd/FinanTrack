@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
+<?import javafx.scene.control.*?>
 <?import javafx.collections.FXCollections?>
+
+<?import javafx.geometry.Insets?>
 <?import java.lang.String?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.AddTransactionController" spacing="10" >
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.EditTransactionController" spacing="10" >
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Add Transaction" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <Label text="Edit Transaction" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
     <HBox spacing="10">
         <Label text="Type:"/>

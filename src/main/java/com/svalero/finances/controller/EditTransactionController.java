@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
-public class AddTransactionController {
+public class EditTransactionController {
 
     @FXML private ComboBox<String> cbType;
     @FXML private TextField txtCategory;
@@ -17,24 +17,36 @@ public class AddTransactionController {
     @FXML private TextField txtDescription;
 
     private final TransactionService transactionService = new TransactionService();
+    private Transaction transaction; // La transacción que vamos a editar
 
     @FXML
     public void initialize() {
         cbType.getItems().addAll("Income", "Expense");
-        dpDate.setValue(LocalDate.now());
+    }
+
+    /**
+     * Método para pasar la transacción seleccionada desde MainController
+     */
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+        // Rellenar los campos con los valores actuales
+        cbType.setValue(transaction.getType());
+        txtCategory.setText(transaction.getCategory());
+        txtAmount.setText(String.valueOf(transaction.getAmount()));
+        dpDate.setValue(transaction.getDate());
+        txtDescription.setText(transaction.getDescription());
     }
 
     @FXML
     public void onSave() {
         try {
-            Transaction t = new Transaction();
-            t.setType(cbType.getValue());
-            t.setCategory(txtCategory.getText());
-            t.setAmount(Double.parseDouble(txtAmount.getText()));
-            t.setDate(dpDate.getValue());
-            t.setDescription(txtDescription.getText());
+            transaction.setType(cbType.getValue());
+            transaction.setCategory(txtCategory.getText());
+            transaction.setAmount(Double.parseDouble(txtAmount.getText()));
+            transaction.setDate(dpDate.getValue());
+            transaction.setDescription(txtDescription.getText());
 
-            transactionService.addTransaction(t);
+            transactionService.updateTransaction(transaction);
 
             Stage stage = (Stage) cbType.getScene().getWindow();
             stage.close();
@@ -49,3 +61,4 @@ public class AddTransactionController {
         ((Stage) cbType.getScene().getWindow()).close();
     }
 }
+
