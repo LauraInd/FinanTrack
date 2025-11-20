@@ -20,7 +20,7 @@ public class AddTransactionController {
 
     @FXML
     public void initialize() {
-        cbType.getItems().addAll("Income", "Expense");
+       // cbType.getItems().addAll("Income", "Expense");
         dpDate.setValue(LocalDate.now());
     }
 
