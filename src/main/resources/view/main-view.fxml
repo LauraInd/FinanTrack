@@ -21,7 +21,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <TableView fx:id="transactionTable" prefHeight="300">
+            <TableView fx:id="transactionTable" prefHeight="400">
                 <columns>
                     <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
                     <TableColumn fx:id="colCategory" text="Category" prefWidth="150"/>
@@ -42,6 +42,9 @@
             <Button fx:id="btnAdd" text="Add" onAction="#onAddTransaction"/>
             <Button fx:id="btnEdit" text="Edit" onAction="#onEditTransaction"/>
             <Button fx:id="btnDelete" text="Delete" onAction="#onDeleteTransaction"/>
+            <Button text="Show Chart" onAction="#onShowChart" />
+            <Button text="Export to CSV" onAction="#onExportCSV"/>
+            <Button text="Export PDF" onAction="#onExportPDF"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Label text="Balance:" style="-fx-font-weight: bold;"/>
             <Label fx:id="lblBalance" text="0.00 €" style="-fx-font-size: 14px; -fx-text-fill: #1a6e1a;"/>

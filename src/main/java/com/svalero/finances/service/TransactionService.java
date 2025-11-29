@@ -3,7 +3,13 @@ package com.svalero.finances.service;
 
 import com.svalero.finances.domain.Transaction;
 import com.svalero.finances.repository.TransactionRepository;
+import com.svalero.finances.repository.DatabaseConnection;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionService {
@@ -15,9 +21,7 @@ public class TransactionService {
             repository.createTable(); // Ensures table exists when app starts
         }
 
-        /**
-         * Add a new transaction after validation.
-         */
+
         public void addTransaction(Transaction transaction) {
             if (transaction.getAmount() <= 0) {
                 throw new IllegalArgumentException("Amount must be greater than zero.");
@@ -32,9 +36,7 @@ public class TransactionService {
             repository.insert(transaction);
         }
 
-        /**
-         * Update an existing transaction.
-         */
+
         public void updateTransaction(Transaction transaction) {
             if (transaction.getId() <= 0) {
                 throw new IllegalArgumentException("Invalid transaction ID.");
@@ -42,16 +44,11 @@ public class TransactionService {
             repository.update(transaction);
         }
 
-        /**
-         * Delete a transaction by ID.
-         */
+
         public void deleteTransaction(int id) {
             repository.delete(id);
         }
 
-        /**
-         * Get all transactions from the database.
-         */
         public List<Transaction> getAllTransactions() {
             return repository.getAll();
         }
@@ -72,5 +69,20 @@ public class TransactionService {
             }
             return balance;
         }
+    public double getTotalIncome() {
+        return repository.getAll().stream()
+                .filter(t -> "Income".equalsIgnoreCase(t.getType()))
+                .mapToDouble(Transaction::getAmount)
+                .sum();
+    }
+
+    public double getTotalExpense() {
+        return repository.getAll().stream()
+                .filter(t -> "Expense".equalsIgnoreCase(t.getType()))
+                .mapToDouble(Transaction::getAmount)
+                .sum();
+    }
+
+
 }
 
