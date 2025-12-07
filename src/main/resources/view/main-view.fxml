@@ -39,9 +39,15 @@
             <Button fx:id="btnAdd" text="Add" onAction="#onAddTransaction"/>
             <Button fx:id="btnEdit" text="Edit" onAction="#onEditTransaction"/>
             <Button fx:id="btnDelete" text="Delete" onAction="#onDeleteTransaction"/>
-            <Button text="Show Chart" onAction="#onShowChart" />
-            <Button text="Export to CSV" onAction="#onExportCSV"/>
-            <Button text="Export PDF" onAction="#onExportPDF"/>
+            <Button text="Manage Categories" onAction="#onManageCategories" />
+            <MenuButton text="Actions" fx:id="menuActions">
+                <items>
+                    <MenuItem text="Show Chart" onAction="#onShowChart"/>
+                    <MenuItem text="Export to CSV" onAction="#onExportCSV"/>
+                    <MenuItem text="Export to PDF" onAction="#onExportPDF"/>
+                </items>
+            </MenuButton>
+
             <Region HBox.hgrow="ALWAYS"/>
             <Label text="Balance:" style="-fx-font-weight: bold;"/>
             <Label fx:id="lblBalance" text="0.00 €" style="-fx-font-size: 14px; -fx-text-fill: #1a6e1a;"/>

@@ -28,7 +28,7 @@
 
     <HBox spacing="10">
         <Label text="Category:"/>
-        <TextField fx:id="txtCategory"/>
+        <ComboBox fx:id="cbCategory"/>
     </HBox>
 
     <HBox spacing="10">

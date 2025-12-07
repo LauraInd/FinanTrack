@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.collections.FXCollections?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.CategoryManagerController" spacing="12" >
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Manage Categories"
+           style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="txtNewCategory" promptText="New category name"/>
+        <Button text="Add" onAction="#onAddCategory"/>
+    </HBox>
+
+    <ListView fx:id="listCategories"  >
+        <items>
+            <FXCollections fx:factory="observableArrayList"/>
+        </items>
+    </ListView>
+
+    <Button text="Delete Selected"
+            onAction="#onDeleteCategory"
+            style="-fx-font-weight: bold; -fx-background-color: #dd5555; -fx-text-fill: white;"/>
+
+</VBox>

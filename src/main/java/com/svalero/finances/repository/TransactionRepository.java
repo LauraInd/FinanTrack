@@ -20,9 +20,18 @@ public class TransactionRepository {
                 "description TEXT" +
                 ");";
 
+        String createCategoryTable = """
+    CREATE TABLE IF NOT EXISTS categories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT UNIQUE NOT NULL
+    )
+""";
+
+
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
+            stmt.execute(createCategoryTable);
             System.out.println("✅ Table 'transactions' verified/created.");
         } catch (SQLException e) {
             System.err.println("❌ Error creating table: " + e.getMessage());

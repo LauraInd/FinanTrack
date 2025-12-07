@@ -3,6 +3,7 @@ package com.svalero.finances.controller;
 import javax.imageio.ImageIO;
 
 import com.itextpdf.text.*;
+import javafx.scene.Parent;
 import javafx.stage.FileChooser;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.WritableImage;
@@ -79,6 +80,9 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/add-transaction.fxml"));
             Scene scene = new Scene(loader.load());
+
+            AddTransactionController controller = loader.getController();
+            controller.loadCategories();
 
             Stage stage = new Stage();
             stage.setTitle("Add Transaction");
@@ -288,6 +292,20 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Error exporting PDF: " + e.getMessage()).showAndWait();
+        }
+    }
+    @FXML
+    public void onManageCategories() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/category-manager.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Manage Categories");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
