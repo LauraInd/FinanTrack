@@ -14,11 +14,10 @@ public class MainApp extends Application {
 
     @Override
     public void init() {
-        // Inicializar Spring Boot
-        springContext = new SpringApplicationBuilder(FinancesApplication.class).run();
+       // springContext = new SpringApplicationBuilder(FinancesApplication.class).run();
     }
 
-    @Override
+  /*  @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main-view.fxml"));
         loader.setControllerFactory(springContext::getBean); // Integración con Spring
@@ -26,12 +25,17 @@ public class MainApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Finances Desktop App");
         primaryStage.show();
-    }
+    } */
 
     @Override
-    public void stop() {
-        springContext.close();
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/home-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 400,400);
+        stage.setTitle("FinanTrack - Home");
+        stage.setScene(scene);
+        stage.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);

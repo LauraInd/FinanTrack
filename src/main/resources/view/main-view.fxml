@@ -47,7 +47,7 @@
                     <MenuItem text="Export to PDF" onAction="#onExportPDF"/>
                 </items>
             </MenuButton>
-
+            <Button text="Close" onAction="#onClose" />
             <Region HBox.hgrow="ALWAYS"/>
             <Label text="Balance:" style="-fx-font-weight: bold;"/>
             <Label fx:id="lblBalance" text="0.00 €" style="-fx-font-size: 14px; -fx-text-fill: #1a6e1a;"/>

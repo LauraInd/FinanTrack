@@ -309,6 +309,11 @@ public class MainController {
         }
     }
 
+    @FXML
+    public void onClose() {
+        Stage stage = (Stage) transactionTable.getScene().getWindow();
+        stage.close();
+    }
 
 
 
