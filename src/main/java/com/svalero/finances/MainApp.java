@@ -21,7 +21,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/home-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400,400);
-        stage.setTitle("FinanTrack - Login");
+        stage.setTitle("FinanTrack - Home");
         stage.setScene(scene);
         stage.show();
     }
