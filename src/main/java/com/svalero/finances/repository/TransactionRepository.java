@@ -32,7 +32,9 @@ public class TransactionRepository {
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
             stmt.execute(createCategoryTable);
-            System.out.println("✅ Table 'transactions' verified/created.");
+
+            System.out.println(" Table 'transactions/categories' verified/created.");
+
         } catch (SQLException e) {
             System.err.println("❌ Error creating table: " + e.getMessage());
         }
@@ -51,7 +53,7 @@ public class TransactionRepository {
             pstmt.setString(5, t.getDescription());
             pstmt.executeUpdate();
 
-            System.out.println("✅ Transaction added successfully.");
+            System.out.println(" Transaction added successfully.");
 
         } catch (SQLException e) {
             System.err.println("❌ Error inserting transaction: " + e.getMessage());
@@ -98,7 +100,7 @@ public class TransactionRepository {
             pstmt.setInt(6, t.getId());
             pstmt.executeUpdate();
 
-            System.out.println("✅ Transaction updated successfully.");
+            System.out.println(" Transaction updated successfully.");
 
         } catch (SQLException e) {
             System.err.println("❌ Error updating transaction: " + e.getMessage());
@@ -114,7 +116,7 @@ public class TransactionRepository {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
 
-            System.out.println("✅ Transaction deleted successfully.");
+            System.out.println(" Transaction deleted successfully.");
 
         } catch (SQLException e) {
             System.err.println("❌ Error deleting transaction: " + e.getMessage());

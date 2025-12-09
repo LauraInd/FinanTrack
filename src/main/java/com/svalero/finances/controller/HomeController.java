@@ -23,7 +23,6 @@ public class HomeController {
             stage.setScene(scene);
             stage.show();
 
-            // ✔ Cerrar la ventana actual correctamente
             Stage currentStage = (Stage) btnOpenFinances.getScene().getWindow();
             currentStage.close();
 

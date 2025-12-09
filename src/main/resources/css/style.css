@@ -1,0 +1,95 @@
+/* ====================== Global ====================== */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f4f4f9;
+}
+
+/* ====================== Labels ====================== */
+.label.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.label.subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+}
+
+.label.balance {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: #1a6e1a;
+}
+
+/* ====================== Botones ====================== */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Menus */
+.menu-button {
+    -fx-background-radius: 5;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.menu-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.menu-item {
+    -fx-font-size: 13px;
+}
+
+/* ====================== TableView ====================== */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f0f0f0;
+}
+
+.table-view .column-header,
+.table-view .cell {
+    -fx-alignment: CENTER;
+}
+
+/* ====================== VBox / HBox ====================== */
+.vbox, .hbox {
+    -fx-spacing: 10;
+}
+
+/* ====================== Close Button ====================== */
+.button.close-btn {
+    -fx-background-color: #e74c3c;
+}
+
+.button.close-btn:hover {
+    -fx-background-color: #c0392b;
+}
+
+.table-view .table-row-cell:filled:selected .text {
+    -fx-fill: black;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: rgba(100, 149, 237, 0.3); /* azul semitransparente */
+}

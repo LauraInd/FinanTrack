@@ -4,12 +4,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.MainController">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.MainController" stylesheets="@/css/style.css">
 
     <top>
         <VBox spacing="5" alignment="CENTER">
-            <Label text="FinanTrack" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-            <Label text="Personal Finance Manager" style="-fx-font-size: 14px; -fx-text-fill: gray;"/>
+            <Label text="FinanTrack" style="-fx-font-size: 24px; -fx-font-weight: bold;" styleClass="title"/>
+            <Label text="Personal Finance Manager" style="-fx-font-size: 14px; -fx-text-fill: gray;" styleClass="subtitle"/>
         </VBox>
     </top>
 
@@ -19,6 +21,30 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Filter by Type:"/>
+                <ComboBox fx:id="comboType">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="All"/>
+                            <String fx:value="Income"/>
+                            <String fx:value="Expense"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Label text="Filter by Category:"/>
+                <ComboBox fx:id="comboCategory"/>
+
+                <Label text="From:"/>
+                <DatePicker fx:id="dateFrom" prefWidth="120"/>
+                <Label text="To:"/>
+                <DatePicker fx:id="dateTo" prefWidth="120"/>
+
+                <Button text="Apply Filter" onAction="#onApplyFilter"/>
+                <Button text="Reset Filter" onAction="#onResetFilter"/>
+            </HBox>
             <TableView fx:id="transactionTable" prefHeight="400">
                 <columns>
                     <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
@@ -47,10 +73,10 @@
                     <MenuItem text="Export to PDF" onAction="#onExportPDF"/>
                 </items>
             </MenuButton>
-            <Button text="Close" onAction="#onClose" />
+            <Button text="Close" onAction="#onClose" styleClass="close-btn"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Label text="Balance:" style="-fx-font-weight: bold;"/>
-            <Label fx:id="lblBalance" text="0.00 €" style="-fx-font-size: 14px; -fx-text-fill: #1a6e1a;"/>
+            <Label fx:id="lblBalance" text="0.00 €" style="-fx-font-size: 14px; -fx-text-fill: #1a6e1a;" styleClass="balance"/>
         </HBox>
     </bottom>
 </BorderPane>

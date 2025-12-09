@@ -3,6 +3,7 @@ package com.svalero.finances.controller;
 import javax.imageio.ImageIO;
 
 import com.itextpdf.text.*;
+import com.svalero.finances.service.CategoryService;
 import javafx.scene.Parent;
 import javafx.stage.FileChooser;
 import javafx.scene.SnapshotParameters;
@@ -52,11 +53,27 @@ public class MainController {
     @FXML private TableColumn<Transaction, String> colDate;
     @FXML private TableColumn<Transaction, String> colDescription;
     @FXML private Label lblBalance;
+    @FXML private ComboBox<String> comboType;
+    @FXML private ComboBox<String> comboCategory;
+    @FXML private DatePicker dateFrom;
+    @FXML private DatePicker dateTo;
+
+    private List<Transaction> allTransactions;
 
     private final TransactionService service = new TransactionService();
+    private final CategoryService categoryService = new CategoryService();
 
     @FXML
     public void initialize() {
+
+        comboType.getSelectionModel().select("All");
+
+
+        comboCategory.getItems().add("All"); // opción por defecto!!!!
+        comboCategory.getItems().addAll(categoryService.getAllCategories());
+        comboCategory.getSelectionModel().select("All");
+
+
         // Configure table columns
         colType.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getType()));
         colCategory.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory()));
@@ -65,14 +82,66 @@ public class MainController {
         colDescription.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDescription()));
 
         loadTransactions();
+        // Resaltar filas según tipo
+        transactionTable.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Transaction t, boolean empty) {
+                super.updateItem(t, empty);
+
+                if (t == null || empty) {
+                    setStyle("");
+                    setTooltip(null);
+                } else {
+                    if ("Income".equalsIgnoreCase(t.getType())) {
+                        setStyle("-fx-background-color: #e0f8e0;");
+                    } else if ("Expense".equalsIgnoreCase(t.getType())) {
+                        setStyle("-fx-background-color: #fde0e0;");
+                    } else {
+                        setStyle("");
+                    }
+
+                    Tooltip tooltip = new Tooltip(t.getDescription());
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
     }
 
+
+
     private void loadTransactions() {
-        List<Transaction> transactions = service.getAllTransactions();
-        transactionTable.getItems().setAll(transactions);
+        allTransactions = service.getAllTransactions();
+       // List<Transaction> transactions = service.getAllTransactions();
+        transactionTable.getItems().setAll(allTransactions);
         lblBalance.setText(String.format("%.2f €", service.calculateBalance()));
 
         checkExpenseWarning();
+    }
+    @FXML
+    public void onApplyFilter() {
+        String selectedType = comboType.getSelectionModel().getSelectedItem();
+        String selectedCategory = comboCategory.getSelectionModel().getSelectedItem();
+        LocalDate fromDate = dateFrom.getValue();
+        LocalDate toDate = dateTo.getValue();
+
+        List<Transaction> filtered = allTransactions.stream()
+                .filter(t -> selectedType.equals("All") || t.getType().equals(selectedType))
+                .filter(t -> selectedCategory.equals("All") || t.getCategory().equals(selectedCategory))
+                .filter(t -> (fromDate == null || !t.getDate().isBefore(fromDate)))
+                .filter(t -> (toDate == null || !t.getDate().isAfter(toDate)))
+                .toList();
+
+        transactionTable.getItems().setAll(filtered);
+    }
+    @FXML
+    public void onResetFilter() {
+        comboType.getSelectionModel().select("All");
+        comboCategory.getSelectionModel().select("All");
+        dateFrom.setValue(null);
+        dateTo.setValue(null);
+
+        transactionTable.getItems().setAll(allTransactions);
     }
 
     @FXML
@@ -314,7 +383,6 @@ public class MainController {
         Stage stage = (Stage) transactionTable.getScene().getWindow();
         stage.close();
     }
-
 
 
     private void showAlert(String message){

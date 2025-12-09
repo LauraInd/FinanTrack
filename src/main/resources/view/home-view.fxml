@@ -3,12 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.HomeController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.svalero.finances.controller.HomeController" stylesheets="@/css/style.css">
 
     <children>
 
         <VBox spacing="20" layoutX="100" layoutY="80" alignment="CENTER">
-            <Label text="FinanTrack" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Label text="FinanTrack 💶" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
 
             <Button fx:id="btnOpenFinances" text="Go to Finances" prefWidth="200"
                     onAction="#onOpenFinances"/>

@@ -109,7 +109,6 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.8</version>
 				<configuration>
-					<!-- clase principal -->
 					<mainClass>com.svalero.finances.MainApp</mainClass>
 				</configuration>
 			</plugin>
@@ -129,6 +128,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<mainClass>com.svalero.finances.MainApp</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
